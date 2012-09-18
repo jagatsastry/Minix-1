@@ -1,4 +1,4 @@
 Minix
 =====
 
-Commented Minix code
+My comments in Minix code
