@@ -1,0 +1,64 @@
+Note: Assembly language files for Minix sometimes use inconsistent syntax.
+      The question was discussed in comp.os.minix newsgroup 
+      [ http://minix1.woodhull.com/faq/asysyn.html ] during May and June, 2004.
+
+
+===================================================================================================
+Pseudo-operations in assemble language:
+
+.extern
+        - Declare a global variable or function that defined in "other" files,
+          so you can use them in "this" file.
+
+
+.define
+        - Declare a global variable or function that defined in "this" files,
+          so it can be  referenced in "other" files.
+
+
+.data    .data2    .data4
+.data 
+        - Define a one-byte data.
+.data2 
+        - Define a two-byte data.
+.data4 
+        - Define a four-byte data.
+
+
+.ascii     .asciz
+.ascii 
+        - Define a character string.
+.asciz 
+        - Define a character string, and add a 0x0 byte at the end of this string.
+
+
+.align NUM
+        - Make the compiler put the things on the integral multiple address.
+
+
+.space NUM
+        - Define a memory space that initialized contain NUM bytes zero.
+
+
+.comm VAR NUM
+        - Define a variable VAR and initialized it to NUM bytes zero.
+
+
+.sect XXXX
+        - Define a section, named “XXXX”.
+        - exapmle:  .sect .text     ! Executable code
+                    .sect .rom      ! Read only data
+                    .sect .data     ! Read and Write able data
+                    .sect .bss      ! Global data
+        - name rule:
+            - You can use period(.), underline(_), Alphabetic letters(a-z and A-Z) and digits (0--9).
+              You cannot put digit at the beginning of a name
+        - Identifier rule:
+            - You can use a digit as an identifier. Identifier is
+              string used for branch instruction. Example
+                    MINIX:
+                    flags:
+
+
+
+

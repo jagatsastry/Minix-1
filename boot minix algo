@@ -1,0 +1,23 @@
+
+Booting minix algorithm:
+
+/* Hardware(a program in ROM) loads first sector of boot disk
+   to memory location 0x7C00. */
+/* bootblock code is the same for an unpartitioned or a partitioned disk. */
+
+if(boot disk == FLOPPY DISK) /* Unpartitioned */
+{
+    bootblock = first sectore of floppy disk;                           /* Loaded at 0x7C00 */
+    bootblock loads boot program /boot/boot;                            /* See /boot/boot.c */
+}
+else if(boot disk == HARD DISK) /* Partitioned */
+{
+    master_boot_record + partitioned_table = first sector of harddisk;  /* Loaded at 0x7C00 */
+    relocate itself to different memory region;                         /* Relocate to 0x0600 */
+    active_partition = get active partition from partition table;       /* Only one partition marked active */
+
+    bootblock = first sector of active_partition;                       /* Loaded at 0x7C00 */
+    bootblock loads boot program /boot/boot;                            /* See /boot/boot.c */
+}
+
+boot program loads Operating System.
