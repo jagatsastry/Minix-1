@@ -3,8 +3,39 @@
 #define _PARTITION_H
 
 /* Me:
- * structure part_entry  is first 10 bytes of disk partition.
- * Stores metadata about partition.
+ * 16 bytes entry of disk partition table,
+ * which stores metadata about partition.
+ *
+ *        
+ *      +-----------+
+ *      |           |
+ *      |   size    |
+ *      |  4 bytes  |
+ *      |           |
+ *      +-----------+
+ *      |           |
+ *      |  lowsec   |
+ *      |  4 bytes  |
+ *      |           |
+ *   8: +-----------+
+ *      | last_cyl  |
+ *      +-----------+
+ *      | last_sec  |
+ *      +-----------+
+ *      | last_head |
+ *      +-----------+
+ *      |  sysind   |
+ *   4: +-----------+
+ *      | start_cyl |
+ *      +-----------+
+ *      | start_sec |
+ *      +-----------+
+ *      |start_head |
+ *      +-----------+ 
+ *      |  bootind  |  }--- one byte
+ *   0: +-----------+ 
+ *
+ *
  */
 
 struct part_entry {

@@ -5,16 +5,21 @@ Booting minix algorithm:
    to memory location 0x7C00. */
 /* bootblock code is the same for an unpartitioned or a partitioned disk. */
 
-if(boot disk == FLOPPY DISK) /* Unpartitioned */
+NEXTDISK:
+get next boot_disk;
+
+if(boot_disk == FLOPPY DISK) /* Unpartitioned */
 {
     bootblock = first sectore of floppy disk;                           /* Loaded at 0x7C00 */
     bootblock loads boot program /boot/boot;                            /* See /boot/boot.c */
 }
-else if(boot disk == HARD DISK) /* Partitioned */
+else if(boot_disk == HARD DISK) /* Partitioned */
 {
     master_boot_record + partitioned_table = first sector of harddisk;  /* Loaded at 0x7C00 */
     relocate itself to different memory region;                         /* Relocate to 0x0600 */
     active_partition = get active partition from partition table;       /* Only one partition marked active */
+    if(no avtive_partition found)
+        goto NEXTDISK:
 
     bootblock = first sector of active_partition;                       /* Loaded at 0x7C00 */
     bootblock loads boot program /boot/boot;                            /* See /boot/boot.c */
