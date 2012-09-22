@@ -4,7 +4,7 @@ Note: Assembly language files for Minix sometimes use inconsistent syntax.
 
 
 ===================================================================================================
-Pseudo-operations in assemble language:
+Pseudo-operations in assembly language:
 
 .extern
         - Declare a global variable or function that defined in "other" files,
